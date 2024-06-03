@@ -21,8 +21,8 @@ CMD ["/code/bin/backend"]
 
 FROM builder AS dev-envs
 
-RUN apk update &&
-apk add git 
+RUN apt update &&
+apt-add git 
 
 RUN addgroup -S docker &&
 adduser -S --shell /bin/bash --ingroup docker vscode
