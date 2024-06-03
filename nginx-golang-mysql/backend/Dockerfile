@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM --platform=$BUILDPLATFORM golang:1.18-alpine AS builder
+FROM golang:1.18-alpine AS builder
 
 WORKDIR /code
 
@@ -21,15 +21,12 @@ CMD ["/code/bin/backend"]
 
 FROM builder AS dev-envs
 
-RUN <<EOF
-apk update
-apk add git
-EOF
+RUN apk update &&
+apk add git 
 
-RUN <<EOF
-addgroup -S docker
+RUN addgroup -S docker &&
 adduser -S --shell /bin/bash --ingroup docker vscode
-EOF
+
 
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
