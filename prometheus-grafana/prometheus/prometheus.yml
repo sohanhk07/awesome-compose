@@ -18,4 +18,4 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - localhost:9090
+    - https://13.233.30.242:9090
